@@ -1,3 +1,11 @@
+$side-color: #191718;
+$banner-color: #efefef;
+$txt-primary: #000000;
+$txt-menu: #aaaaaa;
+$txt-menu-active: #ffffff;
+$bg-menu-active: #5c5c5c;
+$color-border: #dedede;
+$color-border-menu: #5c5c5c;
 html {
     font-size: 62.5%;
 }
@@ -18,8 +26,123 @@ img {
     max-width: 100%;
 }
 
+body {
+    font-family: "Roboto", sans-serif;
+    color: $txt-primary;
+    font-size: 1.6rem;
+    line-height: 1.875rem;
+    font-weight: 400;
+}
+
+@mixin flex( $align: flex-start, $justify: flex-start, $wrap: nowrap, $dir: row) {
+    display: flex;
+    align-items: $align;
+    justify-content: $justify;
+    flex-wrap: $wrap;
+    flex-direction: $dir;
+}
+
 .wrapper {
     max-width: 1918px;
     height: 935px;
     margin: 0 auto;
+    display: flex;
+    margin: auto;
+    .container {
+        margin: 0 auto;
+        max-width: 1510px;
+    }
+    .sidebar {
+        width: 15rem;
+        background-color: $side-color;
+        &__navigation {
+            &--active {
+                color: $txt-menu-active !important;
+            }
+            &--has-background {
+                background-color: $bg-menu-active !important;
+            }
+            &--item {
+                padding: 1.4rem 7.1rem 1.1rem 1.6rem;
+                border-bottom: 1px solid $color-border-menu;
+                a {
+                    color: $txt-menu;
+                    font-size: 1.6rem;
+                    font-weight: 400;
+                    line-height: 1.875rem;
+                }
+            }
+        }
+    }
+    .content {
+        @include flex(center, flex-start, nowrap, column);
+        width: calc(100% - 150px);
+        padding-top: 2rem;
+        .header {
+            .header__inner {
+                padding-bottom: 3rem;
+            }
+        }
+        .banner {
+            background-color: $banner-color;
+            height: 210px;
+            padding: 3.8rem 0;
+            text-align: center;
+            width: 100%;
+            &__title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                padding-bottom: 1.8rem;
+            }
+            &__desc {
+                font-size: 1.6rem;
+                height: 9.5rem;
+                max-width: 972px;
+                margin: 0 26.9rem;
+            }
+        }
+        .feature {
+            @include flex(flex-start, space-between);
+            padding-top: 4rem;
+            padding-bottom: 18.2rem;
+            width: 100%;
+            &__item {
+                max-width: 47rem;
+                &--title {
+                    font-size: 2.4rem;
+                    font-weight: 700;
+                    line-height: 2.8rem;
+                    padding-bottom: 1.8rem;
+                }
+                &--content {
+                    display: flex;
+                    width: 100%;
+                }
+                &--icon {
+                    width: 128px;
+                    height: 128px;
+                    margin-right: 1.6rem;
+                    margin-bottom: 0.6rem;
+                }
+                &--desc,
+                &--bottom__desc {
+                    font-size: 1.6rem;
+                    font-weight: 400;
+                    color: $txt-primary;
+                }
+            }
+        }
+        .footer {
+            height: 79px;
+            border-top: 1px solid $color-border;
+            width: 100%;
+            font-size: 1.6rem;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            &__content {
+                width: 100%;
+            }
+        }
+    }
 }
